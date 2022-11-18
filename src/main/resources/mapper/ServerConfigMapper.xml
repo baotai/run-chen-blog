@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.runchen.blog.mapper.ServerConfigMapper">
+	<resultMap id="BaseResultMap" type="com.runchen.blog.entity.po.ServerConfig">
+            <result column="id" property="id" />
+	        <result column="key" property="key" />
+	        <result column="value" property="value" />
+	        <result column="comment" property="comment" />
+	        <result column="deleted" property="deleted" />
+	        <result column="created_by" property="createdBy" />
+	        <result column="created_time" property="createdTime" />
+	        <result column="modified_by" property="modifiedBy" />
+	        <result column="modified_time" property="modifiedTime" />
+		</resultMap>
+
+    <!-- 表字段 -->
+    <sql id="baseColumns">
+     id, key, value, comment, deleted, created_by, created_time, modified_by, modified_time
+    </sql>
+
+ 	<!-- 根据主键获取单条记录 findByKeyword-->
+    <select id="findOne" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+        	<include refid="baseColumns" />
+		FROM server_config
+		<where>
+          <if test="paramsMap.id != null">
+		  	and id=#{paramsMap.id}
+          </if>
+          <if test="paramsMap.key != null and paramsMap.key != ''">
+		  	and key=#{paramsMap.key}
+          </if>
+          <if test="paramsMap.value != null and paramsMap.value != ''">
+		  	and value=#{paramsMap.value}
+          </if>
+          <if test="paramsMap.comment != null and paramsMap.comment != ''">
+		  	and comment=#{paramsMap.comment}
+          </if>
+          <if test="paramsMap.deleted != null">
+		  	and deleted=#{paramsMap.deleted}
+          </if>
+          <if test="paramsMap.createdBy != null and paramsMap.createdBy != ''">
+		  	and created_by=#{paramsMap.createdBy}
+          </if>
+          <if test="paramsMap.createdTime != null">
+		  	and created_time=#{paramsMap.createdTime}
+          </if>
+          <if test="paramsMap.modifiedBy != null and paramsMap.modifiedBy != ''">
+		  	and modified_by=#{paramsMap.modifiedBy}
+          </if>
+          <if test="paramsMap.modifiedTime != null">
+		  	and modified_time=#{paramsMap.modifiedTime}
+          </if>
+
+        </where>
+          limit 1
+    </select>
+
+	<select id="findByKeyword" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+        	<include refid="baseColumns" />
+		FROM server_config
+		<where>
+          <if test="paramsMap.id != null">
+		  	and id=#{paramsMap.id}
+          </if>
+          <if test="paramsMap.key != null and paramsMap.key != ''">
+		  	and key=#{paramsMap.key}
+          </if>
+          <if test="paramsMap.value != null and paramsMap.value != ''">
+		  	and value=#{paramsMap.value}
+          </if>
+          <if test="paramsMap.comment != null and paramsMap.comment != ''">
+		  	and comment=#{paramsMap.comment}
+          </if>
+          <if test="paramsMap.deleted != null">
+		  	and deleted=#{paramsMap.deleted}
+          </if>
+          <if test="paramsMap.createdBy != null and paramsMap.createdBy != ''">
+		  	and created_by=#{paramsMap.createdBy}
+          </if>
+          <if test="paramsMap.createdTime != null">
+		  	and created_time=#{paramsMap.createdTime}
+          </if>
+          <if test="paramsMap.modifiedBy != null and paramsMap.modifiedBy != ''">
+		  	and modified_by=#{paramsMap.modifiedBy}
+          </if>
+          <if test="paramsMap.modifiedTime != null">
+		  	and modified_time=#{paramsMap.modifiedTime}
+          </if>
+
+       </where>
+    </select>
+
+	<select id="fuzzySelect" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+        	<include refid="baseColumns" />
+		FROM server_config
+		<where>
+          <if test="paramsMap.id != null">
+		  	 and id=#{paramsMap.id}
+          </if>
+          <if test="paramsMap.key != null and paramsMap.key != ''">
+		  	or key like concat('%', #{paramsMap.key}, '%')
+          </if>
+          <if test="paramsMap.value != null and paramsMap.value != ''">
+		  	or value like concat('%', #{paramsMap.value}, '%')
+          </if>
+          <if test="paramsMap.comment != null and paramsMap.comment != ''">
+		  	or comment like concat('%', #{paramsMap.comment}, '%')
+          </if>
+          <if test="paramsMap.deleted != null">
+		  	 and deleted=#{paramsMap.deleted}
+          </if>
+          <if test="paramsMap.createdBy != null and paramsMap.createdBy != ''">
+		  	or created_by like concat('%', #{paramsMap.createdBy}, '%')
+          </if>
+          <if test="paramsMap.createdTime != null">
+		  	 and created_time=#{paramsMap.createdTime}
+          </if>
+          <if test="paramsMap.modifiedBy != null and paramsMap.modifiedBy != ''">
+		  	or modified_by like concat('%', #{paramsMap.modifiedBy}, '%')
+          </if>
+          <if test="paramsMap.modifiedTime != null">
+		  	 and modified_time=#{paramsMap.modifiedTime}
+          </if>
+
+       </where>
+          limit #{paramsMap.startNum}, #{paramsMap.pageSize}
+    </select>
+
+	<select id="countRows" resultType="Integer" parameterType="map">
+		SELECT
+        	count(1)
+		FROM server_config
+		<where>
+          <if test="paramsMap.id != null">
+		  	 and id=#{paramsMap.id}
+          </if>
+          <if test="paramsMap.key != null and paramsMap.key != ''">
+		  	or key like concat('%', #{paramsMap.key}, '%')
+          </if>
+          <if test="paramsMap.value != null and paramsMap.value != ''">
+		  	or value like concat('%', #{paramsMap.value}, '%')
+          </if>
+          <if test="paramsMap.comment != null and paramsMap.comment != ''">
+		  	or comment like concat('%', #{paramsMap.comment}, '%')
+          </if>
+          <if test="paramsMap.deleted != null">
+		  	 and deleted=#{paramsMap.deleted}
+          </if>
+          <if test="paramsMap.createdBy != null and paramsMap.createdBy != ''">
+		  	or created_by like concat('%', #{paramsMap.createdBy}, '%')
+          </if>
+          <if test="paramsMap.createdTime != null">
+		  	 and created_time=#{paramsMap.createdTime}
+          </if>
+          <if test="paramsMap.modifiedBy != null and paramsMap.modifiedBy != ''">
+		  	or modified_by like concat('%', #{paramsMap.modifiedBy}, '%')
+          </if>
+          <if test="paramsMap.modifiedTime != null">
+		  	 and modified_time=#{paramsMap.modifiedTime}
+          </if>
+
+        </where>
+    </select>
+
+    <!-- 更新不为NULL的字段 -->
+    <update id="updateById" parameterType="com.runchen.blog.entity.po.ServerConfig">
+      UPDATE server_config
+      <set>
+		  <if test="key != null and key != ''" >
+          	key=#{key},
+          </if>
+          <if test="value != null and value != ''" >
+          	value=#{value},
+          </if>
+          <if test="comment != null and comment != ''" >
+          	comment=#{comment},
+          </if>
+          <if test="deleted != null" >
+          	deleted=#{deleted},
+          </if>
+          <if test="createdBy != null and createdBy != ''" >
+          	created_by=#{createdBy},
+          </if>
+          <if test="createdTime != null" >
+          	created_time=#{createdTime},
+          </if>
+          <if test="modifiedBy != null and modifiedBy != ''" >
+          	modified_by=#{modifiedBy},
+          </if>
+          <if test="modifiedTime != null" >
+          	modified_time=#{modifiedTime},
+          </if>
+          </set>
+      WHERE id = #{id}
+    </update>
+
+	<!-- 插入全部字段 -->
+    <insert id="save" parameterType="com.runchen.blog.entity.po.ServerConfig">
+      INSERT INTO server_config(
+       id, key, value, comment, deleted, created_by, created_time, modified_by, modified_time)
+      values(
+      #{id},#{key},#{value},#{comment},#{deleted},#{createdBy},#{createdTime},#{modifiedBy},#{modifiedTime})
+
+	</insert>
+
+</mapper>
