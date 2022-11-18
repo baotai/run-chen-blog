@@ -1,7 +1,8 @@
-package com.runchen.blog.controller.member;
+package com.runchen.blog.controller;
 
 import com.runchen.blog.common.PagedResult;
 import com.runchen.blog.common.Result;
+import com.runchen.blog.controller.member.BaseController;
 import com.runchen.blog.entity.po.Users;
 import com.runchen.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/run_chen/user")
+@RequestMapping("/user")
 public class UserController extends BaseController {
 
     @Autowired
@@ -25,7 +26,9 @@ public class UserController extends BaseController {
         }
 
         Users entity = userService.findById(id);
-
+        if (entity != null) {
+            entity.mask();
+        }
         return Result.ok(entity);
     }
 

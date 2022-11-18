@@ -1,7 +1,8 @@
-package com.runchen.blog.controller.member;
+package com.runchen.blog.controller;
 
 import com.runchen.blog.common.PagedResult;
 import com.runchen.blog.common.Result;
+import com.runchen.blog.controller.member.BaseController;
 import com.runchen.blog.entity.po.Roles;
 import com.runchen.blog.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/run_chen/role")
+@RequestMapping("/role")
 public class RoleController extends BaseController {
 
     @Autowired

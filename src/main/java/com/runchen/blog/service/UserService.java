@@ -26,21 +26,23 @@ public class UserService extends BaseService<Users, UsersMapper> {
     public Users findById(Long id) {
         Map<String, Object> map = idToMap(id);
         Users users = findOne(map, usersMapper);
-        return users.mask();
+        return users;
     }
     @Transactional(propagation = Propagation.SUPPORTS)
     public Users findByUsername(String username) {
         Map<String, Object> map = new HashMap<>();
         map.put("username", username);
         Users users = findOne(map, usersMapper);
-        return users.mask();
+        return users;
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
     public List<Users> findByKeyword(Users entity) {
         Map<String, Object> map = entity.parseToMap();
         List<Users> list = findByKeyword(map, usersMapper);
-        list.forEach(Users::mask);
+        if (list != null) {
+            list.forEach(Users::mask);
+        }
         return list;
     }
 

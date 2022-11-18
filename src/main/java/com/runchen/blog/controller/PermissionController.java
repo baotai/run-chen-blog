@@ -1,7 +1,8 @@
-package com.runchen.blog.controller.member;
+package com.runchen.blog.controller;
 
 import com.runchen.blog.common.PagedResult;
 import com.runchen.blog.common.Result;
+import com.runchen.blog.controller.member.BaseController;
 import com.runchen.blog.entity.po.Permissions;
 import com.runchen.blog.service.PermissionsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/run_chen/permission")
+@RequestMapping("/permission")
 public class PermissionController extends BaseController {
 
     @Autowired
