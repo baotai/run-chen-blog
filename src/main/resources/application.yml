@@ -27,7 +27,6 @@ spring:
       prefix: /
       suffix: .html
 
-
 mybatis:
   type-aliases-package: com.cg.entity.po
   mapper-locations: classpath:mapper/**/*.xml
