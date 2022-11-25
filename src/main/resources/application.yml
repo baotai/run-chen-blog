@@ -23,9 +23,6 @@ spring:
       connection-test-query: SELECT 1
   mvc:
     dispatch-options-request: true
-    view:
-      prefix: /
-      suffix: .html
 
 mybatis:
   type-aliases-package: com.cg.entity.po

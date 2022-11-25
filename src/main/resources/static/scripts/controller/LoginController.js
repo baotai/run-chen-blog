@@ -22,7 +22,13 @@ function LoginController($scope, $window, $location, toastr, AppUtil, LoginServi
         }
         LoginService.login(username, password, imageCode)
             .then(function (result) {
-                console.log(result)
+
+                if (result.code !== 200) {
+                    $scope.info = result.msg;
+                    return;
+                }
+                $scope.info = '';
+                $window.location.href = "/index.html"
             }, function (result) {
                 console.log(result)
             })

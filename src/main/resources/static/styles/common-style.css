@@ -213,15 +213,15 @@ table th {
 }
 
 .list-group {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
 }
 
 .side-bar {
     position: absolute;
     width: 195px;
-    top: 85px;
+    top: 15px;
     left: 15px;
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/
     background: #f1f2f7;
     z-index: 2;
 }
